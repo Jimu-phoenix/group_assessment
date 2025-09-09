@@ -128,7 +128,7 @@ select {
 .section-container select:focus {
   outline-color: rgb(50, 66, 189);
 }
-div > form {
+div > form, .editForm {
   padding: 0.8rem 0;
 }
 .label {
@@ -195,6 +195,15 @@ td {
   .toggle {
     visibility: visible;
   }
+}
+.editForm{
+  opacity: 1;
+  padding: 10px;
+  background-color: #3498db;
+  display: none;
+}
+.editForm input{
+  border-radius: 5px;
 }
 @media (min-width: 601px) and (max-width: 1024px) {
   /* Styles for tablets */
