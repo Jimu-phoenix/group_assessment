@@ -2,6 +2,7 @@
   margin: 0;
   box-sizing: border-box;
 }
+
 body {
   font-family: Roboto, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: rgb(13, 13, 13);
@@ -53,6 +54,11 @@ body {
 .sidebar a:hover {
   background-color: rgb(71, 88, 216);
 }
+
+.sidebar.hidden {
+margin-left: -500px; 
+}
+
 .summary-container {
   color: rgb(50, 66, 189);
   display: flex;
@@ -343,3 +349,6 @@ td {
     transform: rotate(360deg);
   }
 }
+
+
+
