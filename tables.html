@@ -42,6 +42,19 @@
         <div class="right"></div>
       </div>
     </div>
+
+    <form action="" id="myform" class="editForm">
+                <label class="label" for="product">Product Name</label>
+                <input type="text" required name="product"/><br />
+                <label class="label" for="price">Price</label>
+                <input type="number" name="price" required/><br />
+                <label class="label" for="category">Quantity</label>
+                <input name="quantity" id="quantity" type="number" required/>
+                <label class="label" for="description">Description</label>
+                <textarea rows="6" name="description" id="" required></textarea>
+                <button class="form-button" type="submit">Save</button>
+    </form>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
       $("document").ready(() => {
@@ -69,6 +82,28 @@
               let td3 = document.createElement('td')
               let td4 = document.createElement('td')
               let td5 = document.createElement('td')
+              let td6 = document.createElement('td')
+              let edit = document.createElement('button')
+              let del = document.createElement('button')
+              let myform = document.getElementById('myform')
+
+              edit.innerText = "Edit"
+              del.innerText = "Delete"
+
+              edit.addEventListener('click', ()=>{
+                myform.style.display = 'block'
+                myform.product.value = element.name
+                myform.price.value = element.price
+                myform.quantity.value = element.quantitty
+                myform.description.value = element.description
+
+                myform.addEventListener('submit', ()=>{
+                  
+                })
+              })
+
+              td6.appendChild(edit)
+              td6.appendChild(del)
 
               td1.innerText = element.id
               td2.innerText = element.name
@@ -81,6 +116,7 @@
               tr.appendChild(td3)
               tr.appendChild(td4)
               tr.appendChild(td5)
+              tr.appendChild(td6)
 
               table.appendChild(tr)
              });
