@@ -33,8 +33,7 @@
           <h3>Product Records</h3>
           <div class="section-container">
             <div class="section-header">Details of avalialble products</div>
-            <div class="section-content">
-              <!-- section content-->
+            <div class="section-content" id="sectCont">
               <h4>Implement here..</h4>
             </div>
           </div>
@@ -45,7 +44,55 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
       $("document").ready(() => {
-        //
+
+        let sectCont = document.getElementById('sectCont')
+
+
+        const getData = async () => {
+          try {
+            const res = await fetch('http://localhost:3000/products/')
+            const data = await res.json()
+            console.log(data)
+
+             let table = document.createElement('table')
+             let th = document.createElement('th')
+             sectCont.appendChild(table)
+             table.innerHTML = "<th>id</th><th>Name</th><th>Price</th><th>Quantity</th><th>Description</th><th></th>"
+
+             data.forEach(element => {
+             let tr = document.createElement('tr')
+              let td1 = document.createElement('td')
+              let td2 = document.createElement('td')
+              let td3 = document.createElement('td')
+              let td4 = document.createElement('td')
+              let td5 = document.createElement('td')
+
+              td1.innerText = element.id
+              td2.innerText = element.name
+              td3.innerText = element.price
+              td4.innerText = element.quantity
+              td5.innerText = element.description
+
+              tr.appendChild(td1)
+              tr.appendChild(td2)
+              tr.appendChild(td3)
+              tr.appendChild(td4)
+              tr.appendChild(td5)
+
+              table.appendChild(tr)
+             });
+
+             table.appendChild(th)
+
+
+
+
+          } catch (error) {
+            console.log("Get Error: ", error)
+          }
+        }
+
+        getData()
       });
     </script>
   </body>
