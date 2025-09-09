@@ -36,8 +36,10 @@
             <div class="section-content">
               <!-- section content-->
               <h4>Implement here..</h4>
+              <div id="loader" class="loader-container">
+                <div class="loader"></div>
+              </div>
             </div>
-          </div>
         </div>
         <div class="right"></div>
       </div>
@@ -47,6 +49,14 @@
       $("document").ready(() => {
         //
       });
+
+       window.onload = function() {
+    setTimeout(function() {
+      document.getElementById("loader").style.display = "none";
+      document.getElementById("productTable").style.display = "block";
+    }, 3000); 
+  };
+
     </script>
   </body>
 </html>
