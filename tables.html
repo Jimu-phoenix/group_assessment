@@ -34,7 +34,6 @@
           <div class="section-container">
             <div class="section-header">Details of avalialble products</div>
             <div class="section-content" id="sectCont">
-              <h4>Implement here..</h4>
               <div id="loader" class="loader-container">
                 <div class="loader"></div>
               </div>
@@ -57,6 +56,8 @@
             console.log(data)
 
              let table = document.createElement('table')
+             table.setAttribute('id', 'myTable')
+             table.style.display = "none"
              let th = document.createElement('th')
              sectCont.appendChild(table)
              table.innerHTML = "<th>id</th><th>Name</th><th>Price</th><th>Quantity</th><th>Description</th><th></th>"
@@ -100,7 +101,7 @@
        window.onload = function() {
     setTimeout(function() {
       document.getElementById("loader").style.display = "none";
-      document.getElementById("productTable").style.display = "block";
+      document.getElementById("myTable").style.display = "block";
     }, 3000); 
   };
 

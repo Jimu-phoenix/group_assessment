@@ -36,14 +36,14 @@
             <div class="section-content">
               <form action="" id="myform">
                 <label class="label" for="product">Product Name</label>
-                <input type="text" /><br />
+                <input type="text" required name="product"/><br />
                 <label class="label" for="price">Price</label>
-                <input type="number" name="price" /><br />
+                <input type="number" name="price" required/><br />
                 <label class="label" for="category">Quantity</label>
                 <input name="quantity" id="quantity" type="number" required/>
                 <label class="label" for="description">Description</label>
-                <textarea rows="6" name="description" id=""></textarea>
-                <button class="form-button" id="save" type="submit">Save</button>
+                <textarea rows="6" name="description" id="" required></textarea>
+                <button class="form-button" type="submit">Save</button>
               </form>
             </div>
           </div>
@@ -55,23 +55,76 @@
       <div class="modal-content">
         <span class="close" id="span">&times;</span>
         <h3>Message</h3>
-        <p>Edit me for success and error messages</p>
+        <p id="message">Edit me for success and error messages</p>
       </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
       $("document").ready(() => {
 
-        $("#save").click((e) => {
-          e.preventDefault();
-          $("#myModal").css("display", "block");
-        });
+         $("#save").click((e) => {
+           e.preventDefault();
+           $("#myModal").css("display", "block");
+         });
 
-        $("#span").click((e) => {
-          e.preventDefault();
-          $("#myModal").css("display", "none");
-        });
+        // $("#span").click((e) => {
+        //   e.preventDefault();
+        //   $("#myModal").css("display", "none");
+        // });
       });
+
+      let myform = document.getElementById('myform')
+
+      myform.addEventListener('submit', (e) => {
+
+        e.preventDefault()
+
+        let message = document.getElementById('message')
+        let modal = document.getElementById('myModal')
+
+        let prod = e.target.product.value
+        let price = e.target.price.value
+        let q = e.target.quantity.value
+        let desc = e.target.description.value
+
+        const postData = async (product, proQuantity, proPrice, proDesc) => {
+              const theData = {
+                name: product,
+                price: proPrice,
+                description: proDesc,
+                quantity: proQuantity
+              }
+             try {
+               const res = await fetch("http://localhost:3000/products/",{
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(theData)
+              })
+              const data = await res.json()
+              console.log(data)
+
+              message.innerText = "Successfully Added!"
+              modal.style.display = 'block';
+
+             } catch (error) {
+              console.log(error)
+              message.innerText = "Error Adding Product"
+              modal.style.display = 'block';
+             }
+            }
+
+        
+        if(!prod || !q || !price || !desc){
+          console.log("Need All inputs")
+        }
+        else if((!(prod.length >= 5) && !(prod.length <= 50)) || !(price > 0) || !(q > 0) || (!(prod.length >= 5) && !(prod.length <= 50))){
+          console.log("Need All inputs")
+        }
+        else{
+           postData(prod, q, price, desc)
+        }
+      })
+
     </script>
   </body>
 </html>
